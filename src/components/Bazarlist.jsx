@@ -8,7 +8,7 @@ const BazarList = () => {
     const [itemName, setItemName] = useState('');
     const [quantity, setQuantity] = useState('');
     const [price, setPrice] = useState('');
-    const [language, setLanguage] = useState('en'); // State for language selection
+    const [language, setLanguage] = useState('en');
 
     const addItem = () => {
         if (itemName && price >= 0) {
@@ -27,7 +27,6 @@ const BazarList = () => {
 
     const totalAmount = items.reduce((total, item) => total + item.price, 0);
 
-    // Handle language change
     const handleLanguageChange = (event) => {
         setLanguage(event.target.value);
     };
@@ -38,21 +37,18 @@ const BazarList = () => {
         doc.setFontSize(20);
         doc.text(language === 'bn' ? 'বাজারের তালিকা' : 'Bazar List', 14, 22);
 
-        // Add table headers
         const headers = [
             language === 'bn' ? 'পণ্যের নাম' : 'Item Name',
             language === 'bn' ? 'পরিমাণ' : 'Quantity',
             language === 'bn' ? 'মূল্য (Tk)' : 'Price (Tk)',
         ];
 
-        // Prepare data for the table
         const data = items.map(item => [
             item.name,
             item.quantity,
             `${item.price.toFixed(2)} Tk`,
         ]);
 
-        // Add total amount to data
         data.push([
             language === 'bn' ? 'মোট পরিমাণ:' : 'Total Amount:',
             '',
@@ -67,11 +63,11 @@ const BazarList = () => {
                 cellPadding: 5,
                 lineColor: [0, 0, 0],
                 lineWidth: 0.1,
-                halign: 'center', // Center align text
+                halign: 'center', 
                 fontSize: 12,
             },
             columnStyles: {
-                0: { cellWidth: 'auto' }, // Adjust column widths as necessary
+                0: { cellWidth: 'auto' }, 
                 1: { cellWidth: 'auto' },
                 2: { cellWidth: 'auto' },
             },
@@ -149,7 +145,7 @@ const BazarList = () => {
                                     onClick={() => deleteItem(index)} 
                                     className="text-red-500 pl-4 hover:text-red-700 flex items-center"
                                 >
-                                    <FaTrash /> {/* Delete icon */}
+                                    <FaTrash />
                                 </button>
                             </td>
                         </tr>
